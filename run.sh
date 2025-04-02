@@ -7,9 +7,9 @@
 
 
 #activate virtual environment
-
 source /home/labs/drake/cs369/venv2025/bin/activate
 
+# run the script
 python3 -u test.py
 
 #exit virtual environment
