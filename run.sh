@@ -5,4 +5,13 @@
 #SBATCH --error=error.txt             # Standard error file
 #SBATCH --time=1:00:00                # Maximum runtime (D-HH:MM:SS)
 
+
+#activate virtual environment
+
+source /home/labs/drake/cs369/venv2025/bin/activate
+
 python3 -u test.py
+
+#exit virtual environment
+deactivate
+
