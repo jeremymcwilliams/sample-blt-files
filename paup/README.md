@@ -15,12 +15,16 @@ cd ~/myPaupProject
 
 
 🧾 Step 1: Create a driver Nexus file
-Create a new file called driver.nex with the following content:
+Create a new file called driver.nex where you list your commands. Below is a sample...yours will vary, depending upon what you're trying to do.
 
 <pre><code>
 #NEXUS
 begin paup;
     exe ~/bio408/paup_nexus_files/primate-mtDNA.nex;
+    set criterion=parsimony;
+    hsearch addseq=random nreps=10;
+    savetrees file=mtDNA.tre format=newick brlens=yes;
+    quit;
 end;
 </code></pre>
 This acts as an instruction set for PAUP* to execute another Nexus file.
