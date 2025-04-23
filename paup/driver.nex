@@ -1,4 +1,4 @@
 #NEXUS
 begin paup;
-    exe ~/bio408/paup_nexus_files/primate-mtDNA.nex;
+    exe ~/bio408/paup_nexus_files/primate-mtDNA.nex;  #or whatever your paup command(s) is/are
 end;

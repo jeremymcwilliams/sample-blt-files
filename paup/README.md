@@ -5,6 +5,8 @@ Normally on BLT, we run paup commands directly in the command line. This can be 
 
 
 
+
+
 🧾 Step 1: Create a driver Nexus file
 Create a new file called driver.nex with the following content:
 
@@ -15,6 +17,7 @@ begin paup;
 end;
 </code></pre>
 This acts as an instruction set for PAUP* to execute another Nexus file.
+[sample driver.nex file](driver.nex)
 
 
 💻 Step 2: Write the Slurm job script
@@ -28,6 +31,7 @@ Create a file called run.sh:
 
 paup -n ~/bio408/driver.nex
 </code></pre>
+[sample run.sh file](run.sh)
 
 🚀 Step 3: Submit the job to Slurm
 Run the following command from the terminal:
@@ -35,3 +39,10 @@ Run the following command from the terminal:
 <pre><code>
 sbatch run.sh
 </code></pre>
+
+
+
+You can check the status of your job by running `squeue` in command line. This will display a list of currently running jobs.
+If you don't see your job listed, it's no longer running. Then you can check the output and error files (specified in your run.sh file) to see if it worked.
+
+
