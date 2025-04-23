@@ -3,6 +3,13 @@
 
 Normally on BLT, we run paup commands directly in the command line. This can be fine, but won't work for longer running analyses. In those cases, it's necessary to set things up so your paup analysis is submitted to SLURM - the cluster's job scheduler. That way your analysis will run even if you disconnect from BLT.
 
+First you'll probably want to create a folder in your home directory. In command line:
+
+<pre><code>
+mkdir ~/myPaupProject
+cd ~/myPaupProject
+
+</code></pre>
 
 
 
@@ -29,7 +36,7 @@ Create a file called run.sh:
 #SBATCH --output=paupOutput.txt       # File to write standard output
 #SBATCH --error=error.txt             # File to write errors
 
-paup -n ~/bio408/driver.nex
+paup -n driver.nex
 </code></pre>
 [sample run.sh file](run.sh)
 
