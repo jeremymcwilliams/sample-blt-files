@@ -8,7 +8,12 @@ Normally on BLT, we run paup commands directly in the command line. This can be 
 🧾 Step 1: Create a driver Nexus file
 Create a new file called driver.nex with the following content:
 
-<pre><code>#NEXUS begin paup; exe ~/bio408/paup_nexus_files/primate-mtDNA.nex; end; </code></pre>
+<pre><code>
+#NEXUS
+begin paup;
+    exe ~/bio408/paup_nexus_files/primate-mtDNA.nex;
+end;
+</code></pre>
 This acts as an instruction set for PAUP* to execute another Nexus file.
 
 
