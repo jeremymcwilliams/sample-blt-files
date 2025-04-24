@@ -1,0 +1,17 @@
+#NEXUS
+begin mrbayes;
+
+    exe ../bio408/paup_nexus_files/primatemtDNAmb.nex;
+    set autoclose=yes nowarn=yes;
+    set quitonerror = no;
+
+    lset nst=6 rates=gamma;             [General Time Reversible + Gamma rate variation]
+    prset statefreqpr=dirichlet(1,1,1,1);
+
+    mcmcp ngen=1000000 samplefreq=100 nchains=4 printfreq=1000 diagnfreq=10000 burninfrac=0.25;
+    mcmcp filename=primatemtDNAmb_local;
+    mcmc;
+
+    sumt filename=/home/jeremym/myBayesTest/primatemtDNAmb_local;
+
+end;

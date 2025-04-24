@@ -1,14 +1,13 @@
-## Running jobs on BLT with PAUP
+## Running jobs on BLT with MrBayes
 
-Fix for mr bayes!
 
 Normally on BLT, we run paup commands directly in the command line. This can be fine, but won't work for longer running analyses. In those cases, it's necessary to set things up so your paup analysis is submitted to SLURM - the cluster's job scheduler. That way your analysis will run even if you disconnect from BLT.
 
 First you'll probably want to create a folder in your home directory. In command line:
 
 <pre><code>
-mkdir ~/myPaupProject
-cd ~/myPaupProject
+mkdir ~/mrBayesProject
+cd ~/mrBayesProject
 
 </code></pre>
 
@@ -54,7 +53,10 @@ sbatch run.sh
 
 
 
-You can check the status of your job by running `squeue` in command line. This will display a list of currently running jobs.
+You can check the status of your job by running `squeue` in command line. This will display a list of currently running jobs:
+
+![squeue results](squeue.png)
+
 If you don't see your job listed, it's no longer running. Then you can check the output and error files (specified in your run.sh file) to see if it worked.
 
 
