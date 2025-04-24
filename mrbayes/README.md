@@ -15,19 +15,26 @@ cd ~/mrBayesProject
 
 
 🧾 Step 1: Create a driver Nexus file
-Create a new file called driver.nex where you list your commands. Below is a sample...yours will vary, depending upon what you're trying to do.
+Create a new file called driver.nex where you list your commands. Below is a sample...yours will vary, depending upon what you're trying to do. Note that Mr Bayes doesn't like the "~" for file paths.
 
 <pre><code>
 #NEXUS
-begin paup;
-    exe ~/bio408/paup_nexus_files/primate-mtDNA.nex;
-    set criterion=parsimony;
-    hsearch addseq=random nreps=10;
-    savetrees file=mtDNA.tre format=newick brlens=yes;
-    quit;
+begin mrbayes;
+
+    exe ../bio408/paup_nexus_files/primatemtDNAmb.nex;
+    set autoclose=yes nowarn=yes;
+    set quitonerror = no;
+    lset nst=6 rates=gamma;             [General Time Reversible + Gamma rate variation]
+    prset statefreqpr=dirichlet(1,1,1,1);
+    mcmcp ngen=1000000 samplefreq=100 nchains=4 printfreq=1000 diagnfreq=10000 burninfrac=0.25;
+    mcmcp filename=primatemtDNAmb_local;
+    mcmc;
+
+    sumt filename=/home/jeremym/mrBayesTest/primatemtDNAmb_local;
+
 end;
 </code></pre>
-This acts as an instruction set for PAUP* to execute another Nexus file.
+This acts as an instruction set to run commands in Mr Bayes.
 [sample driver.nex file](driver.nex)
 
 
@@ -36,11 +43,19 @@ Create a file called run.sh:
 
 <pre><code>
 #!/bin/bash
-#SBATCH --job-name=jm-paup-test       # Optional job name
-#SBATCH --output=paupOutput.txt       # File to write standard output
-#SBATCH --error=error.txt             # File to write errors
+#SBATCH --job-name=my_job
+#SBATCH --output=mbayes_out.txt
+#SBATCH --error=mbayes_err.txt
+#SBATCH --time=01:00:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=2G
 
-paup -n driver.nex
+
+# Navigate to your working directory
+cd ~/mrBayesTest
+
+#this points to a specific version of Mr Bayes that works with the cluster
+mpirun -np 1 $HOME/opt/mrbayes/3.2.7/bin/mb driver.nex
 </code></pre>
 [sample run.sh file](run.sh)
 

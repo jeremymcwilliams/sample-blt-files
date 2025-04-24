@@ -12,6 +12,6 @@ begin mrbayes;
     mcmcp filename=primatemtDNAmb_local;
     mcmc;
 
-    sumt filename=/home/jeremym/myBayesTest/primatemtDNAmb_local;
+    sumt filename=/home/jeremym/mrBayesTest/primatemtDNAmb_local;
 
 end;
